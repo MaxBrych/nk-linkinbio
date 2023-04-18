@@ -23,7 +23,8 @@
     "**/*.ts",
     "**/*.tsx",
     "lib/fetchInstagramPosts",
-    "plugins/instagram-importer.ts"
+    "plugins/instagram-importer.ts",
+    "plugins/instagram-plugin/index"
   ],
   "exclude": ["node_modules"]
 }
