@@ -1,0 +1,38 @@
+import { deskTool } from "@sanity/desk-tool";
+import sanityClient from "@sanity/client";
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
+
+async function fetchInstagramPosts() {
+  const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  const posts = data.data.map((post: any) => ({
+    _type: "instagramPost",
+    mediaType: post.media_type,
+    mediaUrl: post.media_url,
+    username: post.username,
+    timestamp: post.timestamp,
+    articleLink: null, // or add your custom logic for the articleLink field
+  }));
+
+  const client = sanityClient({
+    projectId: projectId,
+    dataset: dataset,
+    token: process.env.SANITY_WRITE_TOKEN,
+    useCdn: false,
+  });
+
+  await client.createOrReplace(posts);
+}
+
+export default deskTool({
+  name: "instagram",
+  title: "Instagram Plugin",
+  component: () => null, // add your custom UI component here
+  initialize: () => {
+    fetchInstagramPosts();
+  },
+});

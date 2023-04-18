@@ -18,6 +18,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/fetchInstagramPosts",
+    "plugins/instagram-importer.ts"
+  ],
   "exclude": ["node_modules"]
 }
