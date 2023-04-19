@@ -16,30 +16,38 @@ function StudioNavbar(props: any) {
 
   const fetchInstagramPosts = async () => {
     const existingPosts = await client.fetch(`
-      *[_type == "instagramPost"] {
-        id
+      *[ _type == "instagramPost" ] { 
+        id 
       }
     `);
 
-    const { data } = await axios.get(
-      `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`
-    );
+    try {
+      const { data } = await axios.get(`https://graph.instagram.com/me/media`, {
+        params: {
+          fields:
+            "id,caption,media_type,media_url,permalink,thumbnail_url,username,timestamp",
+          access_token: process.env.INSTAGRAM_KEY,
+        },
+      });
 
-    const newPosts = data.data.filter(
-      (post: any) => !existingPosts.some((p: any) => p.id === post.id)
-    );
+      const newPosts = data.data.filter(
+        (post: any) => !existingPosts.some((p: any) => p.id === post.id)
+      );
 
-    const documents = newPosts.map((post: any) => ({
-      _type: "instagramPost",
-      id: post.id,
-      caption: post.caption,
-      mediaType: post.media_type,
-      mediaUrl: post.media_url,
-      permalink: post.permalink,
-      thumbnailUrl: post.thumbnail_url,
-    }));
+      const documents = newPosts.map((post: any) => ({
+        _type: "instagramPost",
+        id: post.id,
+        caption: post.caption,
+        mediaType: post.media_type,
+        mediaUrl: post.media_url,
+        permalink: post.permalink,
+        thumbnailUrl: post.thumbnail_url,
+      }));
 
-    await client.create(documents);
+      await client.create(documents);
+    } catch (error) {
+      console.error("Error fetching Instagram posts", error);
+    }
   };
 
   return (

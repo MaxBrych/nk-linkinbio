@@ -16,6 +16,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 export default function Home() {
+  console.log(process.env.INSTAGRAM_KEY);
   return (
     <main className="w-full min-h-screen bg-white">
       <h1 className="my-6 text-4xl font-bold text-center text-black">Hi</h1>
