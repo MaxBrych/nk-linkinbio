@@ -4,7 +4,7 @@ import { FaChevronLeft } from "react-icons/fa";
 
 import { client } from "../../lib/sanity.client";
 
-const INSTAGRAM_KEY = process.env.INSTAGRAM_KEY;
+const INSTAGRAM_KEY = process.env.NEXT_PUBLIC_INSTAGRAM_KEY;
 
 function StudioNavbar(props: any) {
   const [importing, setImporting] = useState(false);
@@ -40,7 +40,7 @@ function StudioNavbar(props: any) {
         permalink: post.permalink,
         thumbnailUrl: post.thumbnail_url,
       }));
-
+      console.log(documents);
       await client.create(documents);
     } catch (error) {
       console.error("Error fetching Instagram posts", error);
@@ -62,7 +62,7 @@ function StudioNavbar(props: any) {
           {importing ? "Importing..." : "Import Instagram Posts"}
         </button>
       </div>
-      <>{props.renderDefault(props)}</>
+      {/*<>{props.renderDefault(props)}</>*/}
     </div>
   );
 }
