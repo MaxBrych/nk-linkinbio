@@ -7,22 +7,24 @@ type Props = {
   posts: InstagramPost[];
 };
 
+export default function Home() {
+  return (
+    <main className="w-full min-h-screen bg-white">
+      <h1 className="my-6 text-4xl font-bold text-center text-black">Hi</h1>
+    </main>
+  );
+}
+
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.INSTAGRAM_KEY}`;
   const res = await fetch(url);
   const data = await res.json();
 
-  return { props: { posts: data.data } };
-};
+  console.log(data);
 
-export default function Home() {
-  console.log(process.env.INSTAGRAM_KEY);
-  return (
-    <main className="w-full min-h-screen bg-white">
-      <h1 className="my-6 text-4xl font-bold text-center text-black">
-        Link in Bio
-      </h1>
-      <Posts />
-    </main>
-  );
-}
+  return {
+    props: {
+      posts: data.data,
+    },
+  };
+};

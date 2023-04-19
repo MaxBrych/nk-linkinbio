@@ -2,8 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
 
-import axios from "axios";
 import { client } from "../../lib/sanity.client";
+
+const INSTAGRAM_KEY = process.env.INSTAGRAM_KEY;
 
 function StudioNavbar(props: any) {
   const [importing, setImporting] = useState(false);
@@ -22,13 +23,9 @@ function StudioNavbar(props: any) {
     `);
 
     try {
-      const { data } = await axios.get(`https://graph.instagram.com/me/media`, {
-        params: {
-          fields:
-            "id,caption,media_type,media_url,permalink,thumbnail_url,username,timestamp",
-          access_token: process.env.INSTAGRAM_KEY,
-        },
-      });
+      const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${INSTAGRAM_KEY}`;
+      const res = await fetch(url);
+      const data = await res.json();
 
       const newPosts = data.data.filter(
         (post: any) => !existingPosts.some((p: any) => p.id === post.id)
