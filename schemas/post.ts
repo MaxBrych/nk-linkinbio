@@ -4,6 +4,11 @@ export default {
   type: "document",
   fields: [
     {
+      name: "id",
+      title: "Identifier",
+      type: "string",
+    },
+    {
       name: "mediaType",
       title: "Media Type",
       type: "string",
@@ -28,12 +33,6 @@ export default {
       type: "url",
       title: "Article Link",
       description: "Enter the URL for the article related to this post",
-      validation: (Rule: { uri: (arg0: { scheme: string[] }) => any }) =>
-        Rule.uri({
-          scheme: ["http", "https"],
-        }),
-      // Set default value to null
-      initialValue: null,
     },
   ],
 };

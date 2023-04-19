@@ -34,14 +34,17 @@ function StudioNavbar(props: any) {
       const documents = newPosts.map((post: any) => ({
         _type: "instagramPost",
         id: post.id,
-        caption: post.caption,
         mediaType: post.media_type,
         mediaUrl: post.media_url,
-        permalink: post.permalink,
-        thumbnailUrl: post.thumbnail_url,
+        username: post.username,
+        timestamp: post.timestamp,
+        articleLink: "https://nordkurier.de", // set a default value
       }));
       console.log(documents);
-      await client.create(documents);
+      await client.create(documents, {
+        visibility: "async",
+        returnDocuments: true,
+      });
     } catch (error) {
       console.error("Error fetching Instagram posts", error);
     }
@@ -62,7 +65,7 @@ function StudioNavbar(props: any) {
           {importing ? "Importing..." : "Import Instagram Posts"}
         </button>
       </div>
-      {/*<>{props.renderDefault(props)}</>*/}
+      <>{props.renderDefault(props)}</>
     </div>
   );
 }
