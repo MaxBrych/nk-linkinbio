@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa";
 
-import { client } from "../../lib/sanity.client";
+import { clientWithWriteToken as client } from "../../lib/sanity.client";
 
 const INSTAGRAM_KEY = process.env.NEXT_PUBLIC_INSTAGRAM_KEY;
 
@@ -17,34 +17,37 @@ function StudioNavbar(props: any) {
 
   const fetchInstagramPosts = async () => {
     const existingPosts = await client.fetch(`
-      *[ _type == "instagramPost" ] { 
-        id 
+      *[ _type == "instagramPost" ] {
+        instagramId
       }
     `);
-
     try {
       const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${INSTAGRAM_KEY}`;
       const res = await fetch(url);
       const data = await res.json();
-
       const newPosts = data.data.filter(
-        (post: any) => !existingPosts.some((p: any) => p.id === post.id)
+        (post: any) =>
+          !existingPosts.some((p: any) => p.instagramId === post.id)
       );
-
       const documents = newPosts.map((post: any) => ({
         _type: "instagramPost",
-        id: post.id,
+        instagramId: post.id,
         mediaType: post.media_type,
         mediaUrl: post.media_url,
         username: post.username,
         timestamp: post.timestamp,
-        articleLink: "https://nordkurier.de", // set a default value
+        articleLink: "https://www.nordkurier.de/", // set a default value
       }));
       console.log(documents);
-      await client.create(documents, {
-        visibility: "async",
-        returnDocuments: true,
+
+      // Create a transaction for creating all the new documents
+      const transaction = client.transaction();
+      documents.forEach((doc: any) => {
+        transaction.create(doc);
       });
+
+      // Commit the transaction
+      await transaction.commit();
     } catch (error) {
       console.error("Error fetching Instagram posts", error);
     }

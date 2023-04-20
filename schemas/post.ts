@@ -4,8 +4,8 @@ export default {
   type: "document",
   fields: [
     {
-      name: "id",
-      title: "Identifier",
+      name: "instagramId",
+      title: "Instagram Identifier",
       type: "string",
     },
     {
