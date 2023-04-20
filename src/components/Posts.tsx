@@ -18,7 +18,7 @@ export default function Post() {
     <div className="flex items-center justify-center w-full px-4 md:px-0">
       <div className="max-w-screen-md">
         <div className="flex flex-col items-center my-8">
-          <h2 className="mt-4 text-xl font-semibold">Nordkurier</h2>
+          <h2 className="mt-4 text-xl font-semibold text-black">Nordkurier</h2>
           <p className="mt-2 text-center text-gray-700">
             Flagge zeigen. Auch in unseren Artikel.
           </p>
