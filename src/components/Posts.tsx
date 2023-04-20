@@ -33,7 +33,7 @@ export default function Post() {
                 <a>
                   <div className="relative w-full pb-full">
                     <img
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className=" w-full h-full object-cover"
                       src={post.mediaUrl}
                       alt={post.name}
                     />
