@@ -1,3 +1,5 @@
+import ImagePreview from "../src/components/ImagePreview";
+
 export default {
   name: "instagramPost",
   title: "Instagram Post",

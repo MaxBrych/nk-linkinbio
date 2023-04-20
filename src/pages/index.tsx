@@ -10,20 +10,8 @@ type Props = {
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen bg-white">
+    <main className="w-full min-h-screen font-sans bg-white">
       <Posts />
     </main>
   );
 }
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${process.env.NEXT_PUBLIC_INSTAGRAM_KEY}`;
-  const res = await fetch(url);
-  const data = await res.json();
-
-  return {
-    props: {
-      posts: data.data,
-    },
-  };
-};
