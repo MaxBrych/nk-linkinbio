@@ -23,7 +23,7 @@ export default function Post() {
             Flagge zeigen. Auch in unseren Artikel.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-3 md:gap-8">
+        <div className="grid grid-cols-3 gap-2 md:gap-4">
           {data.map((post: any) => (
             <div
               key={post.instagramId}
