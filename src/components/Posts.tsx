@@ -30,15 +30,13 @@ export default function Post() {
               className="overflow-hidden border border-gray-300 rounded-md"
             >
               <Link href={post.articleLink || "#"}>
-                <a>
-                  <div className="relative w-full pb-full">
-                    <img
-                      className=" w-full h-full object-cover"
-                      src={post.mediaUrl}
-                      alt={post.name}
-                    />
-                  </div>
-                </a>
+                <div className="relative w-full pb-full">
+                  <img
+                    className="object-cover w-full h-full "
+                    src={post.mediaUrl}
+                    alt={post.name}
+                  />
+                </div>
               </Link>
             </div>
           ))}

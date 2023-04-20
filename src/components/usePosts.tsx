@@ -5,16 +5,16 @@ const fetcher = (query: string) => sanityClient.fetch(query);
 
 export const usePost = () => {
   const query = `*[_type == "instagramPost"] {
-    instagramId,
     name,
     mediaType,
     mediaUrl,
     username,
     timestamp,
     articleLink
-  }`;
+  }
+  `;
 
-  const { data, error } = useSWR(query, fetcher, { refreshInterval: 3000 });
+  const { data, error } = useSWR(query, fetcher, { refreshInterval: 1000 });
 
   return {
     data,
