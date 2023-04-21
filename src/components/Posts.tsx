@@ -2,37 +2,40 @@ import { usePost } from "./usePosts";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 import Image from "next/image";
+import { useCallback } from "react";
+import Dropdown from "./Dropdown";
 
 export default function Post() {
   const { data, isLoading, isError } = usePost();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Läd...</div>;
   }
 
   if (isError) {
-    return <div>Error: {isError.message}</div>;
+    return <div>Fehler: {isError.message}</div>;
   }
 
   return (
-    <div className="flex items-center justify-center w-full px-4 md:px-0">
-      <div className="max-w-screen-md">
-        <div className="flex flex-col items-center my-8">
+    <div className="flex items-center justify-center w-full ">
+      <div className="max-w-screen-md pt-4">
+        <div className="flex flex-col items-center my-4 ">
           <Image
             src={
               "https://cdn.discordapp.com/attachments/911669935363752026/1098491331262824511/Frame_364.png"
             }
             alt="nordkurier logo"
             className="rounded-full"
-            width={96}
-            height={96}
+            width={64}
+            height={64}
           />
-          <h2 className="mt-4 font-sans text-xl font-semibold text-black">
+          <h2 className="mt-2 font-sans text-base font-semibold text-black">
             Nordkurier
           </h2>
-          <p className="mt-2 font-sans text-center text-gray-700">
-            Flagge zeigen. Auch in unseren Artikel.
+          <p className="font-sans text-sm text-center text-gray-700 ">
+            Hier gibt es Neuigkeiten aus dem Nordosten
           </p>
+          {/* <Dropdown />*/}
         </div>
         <div className="grid grid-cols-3 gap-1 md:gap-2">
           {data.map((post: any) => (
