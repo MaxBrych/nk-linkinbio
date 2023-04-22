@@ -18,7 +18,7 @@ const Dropdown = ({ setOpen }: any) => {
           }
           return (
             <>
-              <Menu.Button className="flex items-center justify-between w-full px-4 py-2 text-xs text-black bg-white border border-black">
+              <Menu.Button className="flex items-center justify-between w-full py-2 text-xs text-black bg-white border border-black">
                 Datenschutz und Impressum
                 <FiChevronDown
                   className={`transform transition-transform ${
@@ -29,7 +29,7 @@ const Dropdown = ({ setOpen }: any) => {
               <Menu.Items
                 className={`${
                   open ? "block" : "hidden"
-                } mt-2 absolute left-0 w-full px-4 bg-white shadow-lg rounded border border-gray-200 divide-y divide-gray-100 z-20`}
+                } mt-2 absolute left-0 w-full  bg-white shadow-lg rounded border border-gray-200 divide-y divide-gray-100 z-20`}
               >
                 <Menu.Item>
                   {({ active }) => (
