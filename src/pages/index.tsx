@@ -3,6 +3,7 @@ import { GetStaticProps } from "next";
 import { InstagramPost } from "../../d.types";
 import Posts from "@/components/Posts";
 import StudioNavbar from "@/components/StudioNavbar";
+import { Nunito } from "@next/font/google";
 
 type Props = {
   posts: InstagramPost[];
@@ -10,7 +11,7 @@ type Props = {
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen font-sans bg-white">
+    <main className="w-full min-h-screen bg-white">
       <Posts />
     </main>
   );
