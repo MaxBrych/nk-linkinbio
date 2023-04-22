@@ -14,7 +14,7 @@ export const usePost = () => {
   }
   `;
 
-  const { data, error } = useSWR(query, fetcher, { refreshInterval: 100000 });
+  const { data, error } = useSWR(query, fetcher, { refreshInterval: 1000 });
 
   return {
     data,

@@ -2,11 +2,12 @@ import { usePost } from "./usePosts";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Dropdown from "./Dropdown";
 
 export default function Post() {
   const { data, isLoading, isError } = usePost();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   if (isLoading) {
     return <div>Läd...</div>;
@@ -19,7 +20,7 @@ export default function Post() {
   return (
     <div className="flex items-center justify-center w-full ">
       <div className="max-w-screen-md pt-4">
-        <div className="flex flex-col items-center my-4 ">
+        <div className="flex flex-col items-center my-4">
           <Image
             src={
               "https://cdn.discordapp.com/attachments/911669935363752026/1098491331262824511/Frame_364.png"
@@ -36,7 +37,7 @@ export default function Post() {
             Hier gibt es Neuigkeiten aus dem Nordosten
           </p>
 
-          <Dropdown />
+          <Dropdown setOpen={setDropdownOpen} />
         </div>
         <div className="relative z-10 grid grid-cols-3 gap-1 md:gap-2">
           {data.map((post: any) => (
