@@ -24,7 +24,8 @@
     "**/*.tsx",
     "lib/fetchInstagramPosts",
     "plugins/instagram-importer.ts",
-    "plugins/instagram-plugin/index"
+    "plugins/instagram-plugin/index",
+    "src/components/ImageUrlPreview.js"
   ],
   "exclude": ["node_modules"]
 }

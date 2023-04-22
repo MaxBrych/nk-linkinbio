@@ -49,7 +49,7 @@ export default function Post() {
                   />
                 </div>
               </Link>
-              <div className="absolute bg-gray-700 bg-opacity-50 rounded-full top-1 right-1 md:top-2 md:right-2">
+              <div className="absolute text-white bg-gray-700 bg-opacity-50 rounded-full top-1 right-1 md:top-2 md:right-2">
                 <FiExternalLink
                   className="w-5 h-5 p-1 md:w-6 md:h-6"
                   size={24}

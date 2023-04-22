@@ -21,10 +21,18 @@ function StudioNavbar(props: any) {
         instagramId
       }
     `);
+
     try {
-      const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,username,timestamp&access_token=${INSTAGRAM_KEY}`;
+      const url = `https://graph.instagram.com/me/media?fields=id,media_url,timestamp&access_token=${INSTAGRAM_KEY}`;
       const res = await fetch(url);
       const data = await res.json();
+      if (!data || !data.data) {
+        console.error(
+          "Error: Instagram API returned an unexpected response",
+          data
+        );
+        return;
+      }
       const newPosts = data.data.filter(
         (post: any) =>
           !existingPosts.some((p: any) => p.instagramId === post.id)
@@ -32,9 +40,7 @@ function StudioNavbar(props: any) {
       const documents = newPosts.map((post: any) => ({
         _type: "instagramPost",
         instagramId: post.id,
-        mediaType: post.media_type,
         mediaUrl: post.media_url,
-        username: post.username,
         timestamp: post.timestamp,
         articleLink: "https://www.nordkurier.de/", // set a default value
       }));
@@ -65,7 +71,7 @@ function StudioNavbar(props: any) {
           onClick={handleImport}
           disabled={importing}
         >
-          {importing ? "Importing..." : "Import Instagram Posts"}
+          {importing ? "Importiert..." : "Neuen Post importieren"}
         </button>
       </div>
       <>{props.renderDefault(props)}</>

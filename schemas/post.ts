@@ -1,6 +1,9 @@
+import ImagePreview from "../src/components/ImagePreview";
+import { format } from "date-fns";
+
 export default {
   name: "instagramPost",
-  title: "Instagram Post",
+  title: "📷 Instagram Post",
   type: "document",
   fields: [
     {
@@ -8,21 +11,13 @@ export default {
       title: "Instagram Identifier",
       type: "string",
     },
-    {
-      name: "mediaType",
-      title: "Media Type",
-      type: "string",
-    },
+
     {
       name: "mediaUrl",
       title: "Media URL",
       type: "url",
     },
-    {
-      name: "username",
-      title: "Username",
-      type: "string",
-    },
+
     {
       name: "timestamp",
       title: "Timestamp",
@@ -32,7 +27,29 @@ export default {
       name: "articleLink",
       type: "url",
       title: "Article Link",
-      description: "Enter the URL for the article related to this post",
+      description: "Fügen sie hier die URL des zugehörigen Artikels ein",
     },
   ],
+  preview: {
+    select: {
+      timestamp: "timestamp",
+      username: "username",
+      mediaUrl: "mediaUrl",
+    },
+    prepare(selection: any) {
+      const { username, timestamp } = selection;
+      const formattedTimestamp = format(
+        new Date(timestamp),
+        "dd.MM.yyyy HH:mm"
+      );
+      return {
+        ...selection,
+        title: formattedTimestamp,
+        subtitle: `vom Nordkurier`,
+      };
+    },
+    components: {
+      preview: ImagePreview,
+    },
+  },
 };

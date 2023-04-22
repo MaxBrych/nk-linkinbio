@@ -1,14 +1,16 @@
-// studio/ImagePreview.tsx
+// ImagePreview.tsx
 import React from "react";
+import { convertWebpToJpeg } from "../../utils/convertWebpToJpeg";
 
 interface ImagePreviewProps {
   value: string;
 }
 
 const ImagePreview: React.FC<ImagePreviewProps> = ({ value }) => {
+  const imageUrl = convertWebpToJpeg(value);
   return (
     <img
-      src={value}
+      src={imageUrl}
       alt="Instagram Post Preview"
       style={{
         width: "100%",
