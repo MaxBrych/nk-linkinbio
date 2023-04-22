@@ -18,7 +18,7 @@ export default function Post() {
   }
 
   return (
-    <div className="flex items-center justify-center w-full ">
+    <div className="flex items-center justify-center w-full transition-all duration-150">
       <div className="max-w-screen-md pt-4">
         <div className="flex flex-col items-center my-4">
           <Image

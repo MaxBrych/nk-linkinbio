@@ -13,6 +13,11 @@ module.exports = {
         sans: ["Nunito", ...fontFamily.sans],
         serif: ["Merriweather", ...fontFamily.serif],
       },
+      fontWeight: {
+        medium: 500,
+        semibold: 600,
+        bold: 700,
+      },
       colors: {
         cyan: {
           10: "#001E2C",
