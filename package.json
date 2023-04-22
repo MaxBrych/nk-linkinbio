@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
     "@next/font": "^13.3.0",
     "@portabletext/react": "^2.0.2",
     "@sanity/image-url": "^1.0.2",
@@ -23,6 +24,7 @@
     "date-fns": "^2.29.3",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
+    "headlessui": "^0.0.0",
     "instagram-private-api": "^1.45.3",
     "next": "13.2.4",
     "next-sanity": "^4.1.5",

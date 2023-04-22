@@ -1,51 +1,63 @@
-import React, { useCallback } from "react";
-import Select from "react-select";
+import React from "react";
+import { Menu } from "@headlessui/react";
+import { FiChevronDown } from "react-icons/fi";
 
-const Dropdown: React.FC = () => {
-  const handleSelectChange = useCallback((option: any) => {
-    if (option) {
-      window.location.href = option.value;
-    }
-  }, []);
-
-  const options = [
-    { value: "https://www.nordkurier.de/datenschutz", label: "Datenschutz" },
-    { value: "https://www.nordkurier.de/impressum", label: "Impressum" },
-  ];
-
-  const customStyles = {
-    control: (provided: any) => ({
-      ...provided,
-      width: "100%",
-      height: "48px",
-      marginTop: "16px",
-      fontSize: "14px",
-      fontWeight: "bold",
-      textAlign: "center",
-      color: "#4A5568",
-      backgroundColor: "white",
-      borderColor: "#CBD5E0",
-      borderRadius: "4px",
-    }),
-    option: (provided: any) => ({
-      ...provided,
-      textAlign: "center",
-      color: "#DDDDDD",
-    }),
-    dropdownIndicator: (provided: any) => ({
-      ...provided,
-      display: "none",
-    }),
-  };
-
+const Dropdown = () => {
   return (
-    <Select
-      options={options}
-      placeholder="Datenschutz und Impressum"
-      onChange={handleSelectChange}
-      styles={customStyles}
-      isSearchable={false}
-    />
+    <div className="relative w-full px-4 md:px-0">
+      <Menu>
+        {({ open }) => (
+          <>
+            <Menu.Button className="flex items-center justify-between w-full px-4 py-2 text-black bg-white border border-black">
+              Datenschutz und Impressum
+              <FiChevronDown
+                className={`transform transition-transform ${
+                  open ? "rotate-180" : "rotate-0"
+                }`}
+              />
+            </Menu.Button>
+            <Menu.Items
+              className={`${
+                open ? "block" : "hidden"
+              } mt-2 absolute left-0 w-full bg-white shadow-lg rounded border border-gray-200 divide-y divide-gray-100 z-20`}
+            >
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="https://www.nordkurier.de/datenschutz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${
+                      active
+                        ? "bg-cyan-95 text-cyan-20 rounded-t-sm transition-colors duration-150"
+                        : "text-gray-900"
+                    } block px-4 py-2`}
+                  >
+                    Datenschutz
+                  </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="https://www.nordkurier.de/impressum"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${
+                      active
+                        ? "bg-cyan-95 text-cyan-20 rounded-b-sm transition-colors duration-150"
+                        : "text-gray-900"
+                    } block px-4 py-2`}
+                  >
+                    Impressum
+                  </a>
+                )}
+              </Menu.Item>
+            </Menu.Items>
+          </>
+        )}
+      </Menu>
+    </div>
   );
 };
 

@@ -32,12 +32,13 @@ export default function Post() {
           <h2 className="mt-2 font-sans text-base font-semibold text-black">
             Nordkurier
           </h2>
-          <p className="font-sans text-sm text-center text-gray-700 ">
+          <p className="mb-3 font-sans text-sm text-center text-gray-700 ">
             Hier gibt es Neuigkeiten aus dem Nordosten
           </p>
-          {/* <Dropdown />*/}
+
+          <Dropdown />
         </div>
-        <div className="grid grid-cols-3 gap-1 md:gap-2">
+        <div className="relative z-10 grid grid-cols-3 gap-1 md:gap-2">
           {data.map((post: any) => (
             <div key={post.instagramId} className="relative overflow-hidden">
               <Link href={post.articleLink || "#"}>
