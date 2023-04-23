@@ -1,25 +1,31 @@
-// ImagePreview.tsx
+// imageUrlPreview.js
 import React from "react";
-import { convertWebpToJpeg } from "../../utils/convertWebpToJpeg";
 
-interface ImagePreviewProps {
-  value: string;
-}
+const cloudName = "dkcl1igvd"; // Replace this with your Cloudinary cloud name
 
-const ImagePreview: React.FC<ImagePreviewProps> = ({ value }) => {
-  const imageUrl = convertWebpToJpeg(value);
+const ImageUrlPreview = ({ value }: any) => {
+  const cloudinaryUrl =
+    value &&
+    `https://res.cloudinary.com/${cloudName}/image/fetch/c_thumb,w_100,h_100,f_auto,q_auto/${encodeURIComponent(
+      value
+    )}`;
+
   return (
-    <img
-      src={imageUrl}
-      alt="Instagram Post Preview"
-      style={{
-        width: "100%",
-        height: "auto",
-        objectFit: "cover",
-        maxHeight: "400px",
-      }}
-    />
+    <div>
+      {cloudinaryUrl && (
+        <img
+          src={cloudinaryUrl}
+          alt="Preview"
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+            borderRadius: 2,
+          }}
+        />
+      )}
+    </div>
   );
 };
 
-export default ImagePreview;
+export default ImageUrlPreview;

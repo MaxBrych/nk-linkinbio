@@ -4,7 +4,7 @@ import { client as sanityClient } from "../../lib/sanity.client";
 const fetcher = (query: string) => sanityClient.fetch(query);
 
 export const usePost = () => {
-  const query = `*[_type == "instagramPost"] {
+  const query = `*[_type == "instagramPost"] | order(timestamp desc) {
     name,
     mediaType,
     mediaUrl,
