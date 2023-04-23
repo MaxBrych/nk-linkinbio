@@ -39,7 +39,7 @@ const Dropdown = ({ setOpen }: any) => {
                       rel="noopener noreferrer"
                       className={`${
                         active
-                          ? "bg-cyan-95 text-cyan-20 border transition-colors duration-150"
+                          ? "bg-cyan-95 text-cyan-20  transition-colors duration-150"
                           : "text-gray-900"
                       } block px-4 py-2`}
                     >
@@ -55,7 +55,7 @@ const Dropdown = ({ setOpen }: any) => {
                       rel="noopener noreferrer"
                       className={`${
                         active
-                          ? "bg-cyan-95 text-cyan-20 font-medium border border-t-gray-300 transition-colors duration-150"
+                          ? "bg-cyan-95 text-cyan-20 font-medium  transition-colors duration-150"
                           : "text-gray-900 "
                       } block px-4 py-2`}
                     >
