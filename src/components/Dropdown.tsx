@@ -18,7 +18,7 @@ const Dropdown = ({ setOpen }: any) => {
           }
           return (
             <>
-              <Menu.Button className="flex items-center justify-center w-full px-4 py-2 font-sans text-sm font-bold text-center text-black bg-white border border-black h-9">
+              <Menu.Button className="flex items-center justify-center w-full h-10 px-4 py-2 font-sans text-sm font-bold text-center text-black bg-white border border-black">
                 Impressum und Datenschutz
                 <FiChevronDown
                   className={`transform transition-transform absolute right-8 ${
