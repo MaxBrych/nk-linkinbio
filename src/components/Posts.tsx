@@ -30,9 +30,7 @@ export default function Post() {
             width={64}
             height={64}
           />
-          <h2 className="mt-2 text-base font-semibold text-black">
-            Nordkurier
-          </h2>
+          <h2 className="mt-2 text-base font-bold text-black">Nordkurier</h2>
           <p className="mb-3 text-sm text-center text-gray-700 ">
             Hier gibt es Neuigkeiten aus dem Nordosten
           </p>
