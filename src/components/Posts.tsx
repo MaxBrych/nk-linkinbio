@@ -37,7 +37,7 @@ export default function Post() {
 
           <Dropdown setOpen={setDropdownOpen} />
         </div>
-        <div className="relative z-10 grid grid-cols-3 gap-1 md:gap-2">
+        <div className="relative z-10 grid grid-cols-3 gap-[2px] md:gap-2">
           {data.map((post: any) => (
             <div key={post.instagramId} className="relative overflow-hidden">
               <Link href={post.articleLink || "#"}>
