@@ -62,12 +62,12 @@ function StudioNavbar(props: any) {
   return (
     <div>
       <div className="flex items-center justify-between p-5 text-white bg-black">
-        <Link href="/" className="flex items-center">
-          <FaChevronLeft className="w-5 h-5 mr-2 hover:bg-slate-900 hover:rounded-full " />
+        <Link href="/" className="flex items-center text-sm md:text-base">
+          <FaChevronLeft className="w-4 h-4 mr-2 md:w-5 md:h-5 hover:bg-slate-900 hover:rounded-full " />
           Zur Website
         </Link>
         <button
-          className="px-4 py-2 text-white bg-blue-500 rounded-md"
+          className="px-4 py-2 text-sm text-white bg-blue-500 rounded-md md:text-base"
           onClick={handleImport}
           disabled={importing}
         >
