@@ -18,6 +18,7 @@ function StudioNavbar(props: any) {
   const fetchInstagramPosts = async () => {
     const existingPosts = await client.fetch(`
       *[ _type == "instagramPost" ] {
+        _id,
         instagramId
       }
     `);
@@ -33,24 +34,34 @@ function StudioNavbar(props: any) {
         );
         return;
       }
-      const newPosts = data.data.filter(
-        (post: any) =>
-          !existingPosts.some((p: any) => p.instagramId === post.id)
-      );
-      const documents = newPosts.map((post: any) => ({
-        _type: "instagramPost",
-        instagramId: post.id,
-        mediaUrl: post.media_url,
-        timestamp: post.timestamp,
-        articleLink: "https://www.nordkurier.de/", // set a default value
-      }));
-      console.log(documents);
 
-      // Create a transaction for creating all the new documents
+      // Create a transaction for creating or updating the documents
       const transaction = client.transaction();
-      documents.forEach((doc: any) => {
-        transaction.create(doc);
-      });
+
+      for (const post of data.data) {
+        const existingPost = existingPosts.find(
+          (p: any) => p.instagramId === post.id
+        );
+
+        if (existingPost) {
+          // Update the existing post's mediaUrl
+          transaction.patch(existingPost._id).set({
+            mediaUrl: post.media_url,
+            timestamp: post.timestamp,
+          });
+        } else {
+          // Create a new document
+          const newPost = {
+            _type: "instagramPost",
+            instagramId: post.id,
+            mediaUrl: post.media_url,
+            timestamp: post.timestamp,
+            articleLink: "https://www.nordkurier.de/", // set a default value
+          };
+
+          transaction.create(newPost);
+        }
+      }
 
       // Commit the transaction
       await transaction.commit();
